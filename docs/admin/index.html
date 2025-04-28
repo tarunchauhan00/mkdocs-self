@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Content Manager</title>
+    <base href="/" />
+
+    <!-- Tell Netlify-CMS where its config lives -->
+    <link rel="cms-config-url" href="/admin/config.yaml" type="text/yaml" />
+  </head>
+
+  <body>
+    <!-- 1) Mount point for the CMS UI -->
+    <div id="nc-root"></div>
+
+    <!-- 2) Load Identity widget and CMS bundle at the end, after DOM is ready -->
+    <script>
+      window.CMS_MANUAL_INIT = true;
+      document.addEventListener('DOMContentLoaded', function() {
+        // Load Netlify Identity widget
+        var idScript = document.createElement('script');
+        idScript.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+        idScript.onload = function() {
+          // Initialize Identity (open signup enabled)
+          netlifyIdentity.init({ open_signup: true });
+          netlifyIdentity.on('init', function(user) {
+            if (!user) {
+              netlifyIdentity.open('login');
+            }
+          });
+        };
+        document.body.appendChild(idScript);
+
+        // Load Netlify CMS
+        var cmsScript = document.createElement('script');
+        cmsScript.src = 'https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js';
+        cmsScript.onload = function() {
+          // Now manually init the CMS into our #nc-root
+          CMS.init({
+            configPath: '/admin/config.yaml',
+            root: document.getElementById('nc-root')
+          });
+        };
+        document.body.appendChild(cmsScript);
+      });
+    </script>
+  </body>
+</html>

@@ -5,3 +5,4 @@ weasyprint>=65.1
 mkdocs-mermaid2-plugin>=1.2
 mkdocs-awesome-pages-plugin>=2.6
 mkdocs-macros-plugin>=1.0
+PyYAML>=6.0

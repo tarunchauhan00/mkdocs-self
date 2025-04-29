@@ -1,0 +1,4 @@
+# docs/settings.yml
+site_name: My Docs Site
+site_description: Documentation with Netlify CMS
+logo: assets/images/logo.png

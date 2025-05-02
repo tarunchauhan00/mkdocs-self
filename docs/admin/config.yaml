@@ -6,7 +6,6 @@ media_folder: "docs/images"
 public_folder: "/images"
 
 collections:
-  # Site Settings collection: editable in CMS to update site name, description & logo
   - name: "settings"
     label: "Site Settings"
     files:
@@ -18,7 +17,6 @@ collections:
           - { label: "Site Description", name: "site_description", widget: "text" }
           - { label: "Logo Path",        name: "logo",             widget: "string" }
 
-  # Page collection: all other markdown pages under docs/
   - name: "pages"
     label: "Pages"
     folder: "docs"
